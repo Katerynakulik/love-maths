@@ -23,14 +23,16 @@ document.addEventListener("DOMContentLoaded", function () {
 function runGame(gameType) {
   document.getElementById("answer-box").value = "";
   document.getElementById("answer-box").focus();
-  let num1 = Math.floor(Math.random() * 25) + 1;
-  let num2 = Math.floor(Math.random() * 25) + 1;
+  let num1 = Math.floor(Math.random() * 10) + 1;
+  let num2 = Math.floor(Math.random() * 10) + 1;
+  let num3 = Math.floor(Math.random() * 100) + 1;
+  let num4 = Math.floor(Math.random() * 100) + 1;
   if (gameType === "addition") {
-    displayAdditionQuestion(num1, num2);
+    displayAdditionQuestion(num3, num4);
   } else if (gameType === "multiply") {
     displayMultiplyQuestion(num1, num2);
   } else if (gameType === "subtract") {
-    displaySubtractQuestion(num1, num2);
+    displaySubtractQuestion(num3, num4);
   } else if (gameType === "division") {
     displayDivisionQuestion(num1, num2);
   } else {
@@ -44,11 +46,11 @@ function checkAnswer() {
   let isCorrect = userAnswer === calculatedAnswer[0];
 
   if (isCorrect) {
-    alert("Hey! You got it right! :D");
+    alert("Hey! Du hast es richtig gemacht! :D");
     incrementScore();
   } else {
     alert(
-      `Awww....you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`
+      `Ohhh... Sie haben ${userAnswer} geantwortet. Die richtige Antwort war ${calculatedAnswer[0]}!`
     );
     incrementWrongAnswer();
   }
@@ -64,7 +66,7 @@ function calculateCorrectAnswer() {
     return [operand1 * operand2, "multiply"];
   } else if (operator === "-") {
     return [operand1 - operand2, "subtract"];
-  } else if (operator === "/") {
+  } else if (operator === "÷") {
     return [operand1 / operand2, "division"];
   } else {
     alert(`Unimplemented operator ${operator}`);
@@ -99,5 +101,5 @@ function displayMultiplyQuestion(operand1, operand2) {
 function displayDivisionQuestion(operand1, operand2) {
   document.getElementById("operand1").textContent = operand1 * operand2;
   document.getElementById("operand2").textContent = operand2;
-  document.getElementById("operator").textContent = "/";
+  document.getElementById("operator").textContent = "÷";
 }
